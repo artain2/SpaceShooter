@@ -1,0 +1,206 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0902c5e4af3541ce9ab104c6ea2491cd, type: 3}
+  m_Name: InjectorConfig
+  m_EditorClassIdentifier: 
+  InfoList:
+  - TypeName: SpaceShooter.CameraService
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
+  - TypeName: SpaceShooter.InputController
+    IsInAssembly: 1
+    CollectionsInjectingOrder:
+    - CollectionFieldName: _clickSubs
+      TargetType: SpaceShooter.IClickSub
+      Injectables:
+      - SpaceShooter.Core.Ship.ShipMotionService
+    Realizations: []
+  - TypeName: SpaceShooter.GameLoopService
+    IsInAssembly: 1
+    CollectionsInjectingOrder:
+    - CollectionFieldName: _coreInputAllowSubs
+      TargetType: SpaceShooter.ICoreInputAllowSub
+      Injectables:
+      - SpaceShooter.Core.Ship.ShipMotionService
+    - CollectionFieldName: _levelStartSubs
+      TargetType: SpaceShooter.ICoreLevelSub
+      Injectables:
+      - SpaceShooter.Core.Asteroids.AsteroidService
+      - SpaceShooter.PlayerLiveService
+      - SpaceShooter.LevelTimeService
+      - SpaceShooter.WinService
+      - SpaceShooter.LevelTimeViewService
+    - CollectionFieldName: _clearSubs
+      TargetType: SpaceShooter.ICoreClearSub
+      Injectables:
+      - SpaceShooter.Core.Ship.ShipProvider
+      - SpaceShooter.Core.Asteroids.AsteroidService
+      - SpaceShooter.Core.Ship.ShootingService
+    Realizations: []
+  - TypeName: SpaceShooter.Core.Ship.ShipMotionService
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
+  - TypeName: SpaceShooter.Core.Ship.ShipProvider
+    IsInAssembly: 1
+    CollectionsInjectingOrder:
+    - CollectionFieldName: _shipSubs
+      TargetType: SpaceShooter.Core.Ship.IShipSub
+      Injectables:
+      - SpaceShooter.Core.Ship.ShipMotionService
+      - SpaceShooter.Core.Ship.ShootingService
+    Realizations: []
+  - TypeName: SpaceShooter.Core.Ship.ShootingService
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
+  - TypeName: SpaceShooter.Core.Asteroids.AsteroidService
+    IsInAssembly: 1
+    CollectionsInjectingOrder:
+    - CollectionFieldName: _playerHitSubs
+      TargetType: SpaceShooter.IPlayerHitSub
+      Injectables:
+      - SpaceShooter.PlayerLiveService
+    - CollectionFieldName: _controllers
+      TargetType: SpaceShooter.Core.Asteroids.IAsteroidController
+      Injectables:
+      - SpaceShooter.Core.Asteroids.AsteroidControllerCommon
+      - SpaceShooter.Core.Asteroids.AsteroidControllerHard
+      - SpaceShooter.Core.Asteroids.AsteroidControllerSnowball
+      - SpaceShooter.Core.Asteroids.AsteroidControllerSplitter
+    Realizations: []
+  - TypeName: SpaceShooter.DataService
+    IsInAssembly: 1
+    CollectionsInjectingOrder:
+    - CollectionFieldName: _dataServices
+      TargetType: SpaceShooter.IDataService
+      Injectables:
+      - SpaceShooter.Map.LevelProgressService
+      - SpaceShooter.Core.Asteroids.LevelDataService
+    Realizations: []
+  - TypeName: SpaceShooter.Core.Asteroids.AsteroidControllerCommon
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
+  - TypeName: SpaceShooter.Core.Asteroids.AsteroidControllerHard
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
+  - TypeName: SpaceShooter.Core.Asteroids.AsteroidControllerSnowball
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
+  - TypeName: SpaceShooter.Core.Asteroids.AsteroidControllerSplitter
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
+  - TypeName: SpaceShooter.Lose.LoseService
+    IsInAssembly: 1
+    CollectionsInjectingOrder:
+    - CollectionFieldName: _inputSubs
+      TargetType: SpaceShooter.ICoreInputAllowSub
+      Injectables:
+      - SpaceShooter.Core.Ship.ShipMotionService
+    - CollectionFieldName: _loseSubs
+      TargetType: SpaceShooter.Lose.ILoseSub
+      Injectables: []
+    Realizations: []
+  - TypeName: SpaceShooter.UIService
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
+  - TypeName: SpaceShooter.UIRootService
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
+  - TypeName: SpaceShooter.PlayerLiveService
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations:
+    - FieldName: _loseService
+      Realization: SpaceShooter.Lose.ILoseService
+  - TypeName: SpaceShooter.Lose.LoseWindowService
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
+  - TypeName: SpaceShooter.Map.MapViewService
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
+  - TypeName: SpaceShooter.ScreenService
+    IsInAssembly: 1
+    CollectionsInjectingOrder:
+    - CollectionFieldName: _screenScangeSubs
+      TargetType: SpaceShooter.IScreenChangeSub
+      Injectables:
+      - SpaceShooter.Map.MapViewService
+      - SpaceShooter.LevelTimeService
+      - SpaceShooter.WinService
+      - SpaceShooter.LevelTimeViewService
+      - SpaceShooter.CoreUIService
+    Realizations: []
+  - TypeName: SpaceShooter.GameRunner
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
+  - TypeName: SpaceShooter.Map.LevelProgressService
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
+  - TypeName: SpaceShooter.PlayerLiveViewService
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
+  - TypeName: SpaceShooter.ExitToMapService
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
+  - TypeName: SpaceShooter.Map.LevelsSequenceService
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
+  - TypeName: SpaceShooter.LevelTimeService
+    IsInAssembly: 1
+    CollectionsInjectingOrder:
+    - CollectionFieldName: _timeCompleteSubs
+      TargetType: SpaceShooter.ILevelTimerCompleteSub
+      Injectables: []
+    Realizations: []
+  - TypeName: SpaceShooter.WinService
+    IsInAssembly: 1
+    CollectionsInjectingOrder:
+    - CollectionFieldName: _inputSubs
+      TargetType: SpaceShooter.ICoreInputAllowSub
+      Injectables:
+      - SpaceShooter.Core.Ship.ShipMotionService
+    Realizations: []
+  - TypeName: SpaceShooter.WinWindowService
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
+  - TypeName: SpaceShooter.Core.Asteroids.LevelDataService
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
+  - TypeName: SpaceShooter.Core.Asteroids.LevelDataGenerator
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
+  - TypeName: SpaceShooter.LevelTimeViewService
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
+  - TypeName: SpaceShooter.CoreUIService
+    IsInAssembly: 1
+    CollectionsInjectingOrder: []
+    Realizations: []
